@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
+from __future__ import annotations
+
 
 import argparse, sys
 
+# Remove that shit, entry points are the answer
 sys.path.append('.')
+from pathlib import Path
 
-from hexgen import generate
+from hexgen import generate, draw_grid
 from hexgen.enums import MapType
-
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--map-type")
@@ -19,6 +22,7 @@ parser.add_argument("--sea-percent", type=int)
 parser.add_argument("--hydrosphere", action="store_true")
 parser.add_argument("--image", action="store_true")
 parser.add_argument("--num-rivers", type=int)
+parser.add_argument("--random-seed", type=int)
 parser.add_argument("--num-territories", type=int)
 parser.add_argument("--debug", action="store_true")
 args = parser.parse_args()
@@ -33,8 +37,18 @@ options = {
     "sea_percent": args.sea_percent or 60,
     "hydrosphere": args.hydrosphere or True,
     "num_rivers": args.num_rivers or 125,
-    "num_territories": args.num_territories or 0
+    "num_territories": args.num_territories or 0,
+    "random_seed": args.random_seed or None
 }
 
-gen = generate(options, debug=args.debug, image=args.image)
-gen.export('output/world-data.json')
+# Hack to fic with sys.path changes
+BASE_DIR = Path(__file__).parent.parent.parent
+OUTPUT_PATH = BASE_DIR / 'output'
+OUTPUT_MAP_PATH = OUTPUT_PATH / 'world-data.json'
+print(OUTPUT_MAP_PATH)
+
+hex_grid = generate(options, debug=args.debug, image=args.image)
+if args.image:
+    draw_grid(hex_grid, OUTPUT_PATH)
+
+hex_grid.export(OUTPUT_MAP_PATH)

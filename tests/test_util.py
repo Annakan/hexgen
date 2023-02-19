@@ -2,6 +2,7 @@ from unittest import TestCase
 
 from hexgen.util import latitude_to_number
 
+
 class TestLatitudeToNumber(TestCase):
 
     def test_basic(self):

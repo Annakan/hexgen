@@ -16,3 +16,4 @@ options = {
 
 gen = generate(options, image=True)
 # gen.export('bin/export3.json')
+print(gen)

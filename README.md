@@ -66,7 +66,7 @@ One interesting thing it can do is take all the data about a hexagon and determi
     - aquifer_max (int): maximum number of aquifers to place underground
     - river_max (int): maximum number of rivers to place on the map
     - crater_max (int): maximum number of craters to place on the surface
-    - volcano_max (int): maximum number of volanoes to place on the surface
+    - volcano_max (int): maximum number of volcanoes to place on the surface
     - make_lakes (bool): Put lakes on hexes with 4 or more river segments
 
 - Territories (optional):

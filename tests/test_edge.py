@@ -6,6 +6,7 @@ from hexgen.grid import Grid
 from hexgen.mapgen import default_params
 from hexgen.heightmap import Heightmap
 
+
 class TestEdge(TestCase):
 
     def setUp(self):

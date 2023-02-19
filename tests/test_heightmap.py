@@ -3,6 +3,7 @@ from unittest import TestCase
 from hexgen.mapgen import default_params
 from hexgen.heightmap import Heightmap
 
+
 class TestHeightmap(TestCase):
 
     def setUp(self):
