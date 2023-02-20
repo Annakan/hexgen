@@ -24,7 +24,7 @@ class Grid:
         if debug:
             print("Making grid")
         self.num_ocean_hexes = 0
-        self.grid = np.ndarray((self.heightmap.size, self.heightmap.size), dtype=np.object)
+        self.grid = np.ndarray((self.heightmap.size, self.heightmap.size), dtype=object)
         for y, row in enumerate(self.grid):
             for x, col in enumerate(row):
                 self.grid[x][y] = Hex(self, x, y, self.heightmap.height_at(x, y))
