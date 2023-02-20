@@ -5,7 +5,7 @@ from enum import Enum
 
 from hexgen.constants import *
 from hexgen.enums import Biome, MapType, HexType, HexFeature, HexSide, Zones, Hemisphere, HexEdge
-from hexgen.util import blend_colors, lighten, randomize_color, pressure_at_seasons, decide_wind, is_opposite_hex, memoized
+from hexgen.util import blend_colors, lighten, randomize_color, pressure_at_seasons, decide_wind, is_opposite_hex
 
 
 class Hex:
@@ -160,7 +160,6 @@ class Hex:
         else:
             ratio = (1 - ratio) / 0.5
         return ratio
-
 
     @property
     def hemisphere(self):

@@ -1,15 +1,27 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-
-import argparse, sys
+import argparse
+# import sys
 
 # Remove that shit, entry points are the answer
-sys.path.append('.')
+# sys.path.append('.')
 from pathlib import Path
 
 from hexgen import generate, draw_grid
 from hexgen.enums import MapType
+
+BASE_DIR = Path().absolute()
+OUTPUT_PATH = BASE_DIR / 'output'
+
+
+def validate_dir_path(dir_path: str | Path) -> Path:
+    dir_path = Path(dir_path)
+    if dir_path.isdir(dir_path):
+        return dir_path
+    else:
+        raise NotADirectoryError(str(dir_path))
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--map-type")
@@ -25,6 +37,9 @@ parser.add_argument("--num-rivers", type=int)
 parser.add_argument("--random-seed", type=int)
 parser.add_argument("--num-territories", type=int)
 parser.add_argument("--debug", action="store_true")
+parser.add_argument("--output-dir", type=validate_dir_path, default=OUTPUT_PATH, help=f"Directory to output data and "
+                                                                                      f"maps into, defaults to"
+                                                                                      f" {OUTPUT_PATH}")
 args = parser.parse_args()
 
 options = {
@@ -41,14 +56,11 @@ options = {
     "random_seed": args.random_seed or None
 }
 
-# Hack to fic with sys.path changes
-BASE_DIR = Path(__file__).parent.parent.parent
-OUTPUT_PATH = BASE_DIR / 'output'
-OUTPUT_MAP_PATH = OUTPUT_PATH / 'world-data.json'
-print(OUTPUT_MAP_PATH)
+WORLD_DATA_FILEPATH = args.output_dir / 'world-data.json'
+print(WORLD_DATA_FILEPATH)
 
 hex_grid = generate(options, debug=args.debug, image=args.image)
 if args.image:
     draw_grid(hex_grid, OUTPUT_PATH)
 
-hex_grid.export(OUTPUT_MAP_PATH)
+hex_grid.export(WORLD_DATA_FILEPATH)
