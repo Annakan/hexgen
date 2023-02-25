@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='hexgen',
-    version="1.2",
+    version="1.3",
     packages=find_packages(),
     install_requires=[
         'pillow',
@@ -12,4 +12,5 @@ setup(
         'tests': [' pytest', ]
     },
     package_data={'': ['fonts/*']},
+    scripts=['bin/hexgen'],
 )
