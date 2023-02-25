@@ -35,7 +35,7 @@ default_params = {
 
     # features
     "craters": False,
-    "volanoes": False,
+    "volcanoes": False,
 
     "num_rivers": 50,
 
