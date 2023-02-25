@@ -952,11 +952,11 @@ class MapGen:
                 for y, col in enumerate(row):
                     h = self.hex_grid.find_hex(x, y)
                     color_temperature = (
-                        (h.color_temperature[0][0] + h.color_temperature[1][0]) / 2,
-                        (h.color_temperature[0][1] + h.color_temperature[1][1]) / 2,
-                        (h.color_temperature[0][2] + h.color_temperature[1][2]) / 2
+                        (h.color_temperature[0][0] + h.color_temperature[1][0]) // 2,
+                        (h.color_temperature[0][1] + h.color_temperature[1][1]) // 2,
+                        (h.color_temperature[0][2] + h.color_temperature[1][2]) // 2
                     )
-                    temperature = round((h.temperature[0] + h.temperature[1]) / 2, 2)
+                    temperature = (h.temperature[0] + h.temperature[1]) // 2
                     row_data.append({
                         "id": h.id.hex,
                         "x": x,
